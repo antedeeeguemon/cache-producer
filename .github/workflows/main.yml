@@ -1,0 +1,20 @@
+name: cache-producer
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create cache content
+        run: |
+          mkdir -p cachetest
+          echo "REAL_CACHE=$(date)" > cachetest/data.txt
+
+      - name: Save cache
+        uses: actions/cache@v4
+        with:
+          path: cachetest
+          key: test-cache-${{ github.ref }}
