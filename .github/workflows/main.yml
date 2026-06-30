@@ -17,4 +17,4 @@ jobs:
         uses: actions/cache@v4
         with:
           path: cachetest
-          key: test-cache-${{ github.ref }}
+          key: test-cache-manual
