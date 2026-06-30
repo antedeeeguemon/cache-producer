@@ -1,4 +1,4 @@
-name: cache-producer
+name: producer
 
 on:
   workflow_dispatch:
@@ -8,14 +8,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Create cache content
+      - name: Create artifact content
         run: |
-          mkdir -p cachetest
-          echo "REAL_CACHE=$(date)" > cachetest/data.txt
-          cat cachetest/data.txt
+          mkdir -p data
+          echo "SAFE_DATA=$(date)" > data/info.txt
 
-      - name: Save cache
-        uses: actions/cache@v4
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
         with:
-          path: cachetest
-          key: test-cache-manual
+          name: data-artifact
+          path: data
